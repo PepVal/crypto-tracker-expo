@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
+    alignItems:"center"
   },
   symbolText: {
     color: Colors.white,

@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { TextInput, View, StyleSheet, Platform } from "react-native";
+import Svg, { Path } from "react-native-svg";
 import Colors from "../../res/colors";
+import IconPath from "../../res/iconPath";
 
 const CoinsSearch = ({ onChange }) => {
   const [query, setQuery] = useState("");
@@ -23,18 +25,28 @@ const CoinsSearch = ({ onChange }) => {
         onChangeText={handleText}
         value={query}
         placeholder="Seach coin"
-        placeholderTextColor={Colors.white}
+        placeholderTextColor={Colors.gray}
       />
+      <View style={styles.iconInput}>
+        <Svg height={30} width={30} viewBox="0 0 24 24">
+          <Path d={IconPath.magnify} fill={Colors.white} />
+        </Svg>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  iconInput: {
+    position: "absolute",
+    right: 8,
+    top: 8,
+  },
   textInput: {
     height: 46,
     backgroundColor: Colors.charade,
     paddingLeft: 16,
-    color: Colors.white
+    color: Colors.white,
   },
   textInputAndroid: {
     borderWidth: 1,

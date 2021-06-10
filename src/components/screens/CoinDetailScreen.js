@@ -13,7 +13,10 @@ import {
 import Http from "../../libs/http";
 import Storage from "../../libs/storage";
 import Colors from "../../res/colors";
-import CoinMarketItem from "./CoinMarketItem";
+import { BASE_API } from "../../server/api";
+import CoinMarketItem from "../coinDetail/CoinMarketItem";
+import SectionHeader from "../coinDetail/SectionHeader";
+import SectionItem from "../coinDetail/SectionItem";
 
 const CoinDetailScreen = ({ navigation, route }) => {
   const [coin, setCoin] = useState({});
@@ -21,13 +24,16 @@ const CoinDetailScreen = ({ navigation, route }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
+    getCoin();
+  }, []);
+
+  const getCoin = () => {
     const { coin } = route.params;
     navigation.setOptions({ title: coin.symbol });
     getMarkets(coin.id);
-    setCoin(coin);
-
     getFavorite(coin.id);
-  }, []);
+    setCoin(coin);
+  };
 
   const getSymbolIcon = (nameStr) => {
     if (nameStr) {
@@ -56,7 +62,7 @@ const CoinDetailScreen = ({ navigation, route }) => {
   };
 
   const getMarkets = async (coinId) => {
-    const url = `https://api.coinlore.net/api/coin/markets/?id=${coinId}`;
+    const url = `${BASE_API}/coin/markets/?id=${coinId}`;
     const markets = await Http.instance.get(url);
     setMarkets(markets);
   };
@@ -150,18 +156,6 @@ const CoinDetailScreen = ({ navigation, route }) => {
   );
 };
 
-const SectionItem = ({ item }) => (
-  <View style={styles.sectionItem}>
-    <Text style={styles.itemText}>{item}</Text>
-  </View>
-);
-
-const SectionHeader = ({ section }) => (
-  <View style={styles.sectionHeader}>
-    <Text style={styles.sectionText}>{section.title}</Text>
-  </View>
-);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -179,7 +173,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleText: {
-    fontSize: 18,
+    fontSize: 24,
     color: Colors.white,
     fontWeight: "bold",
     marginStart: 8,
@@ -190,27 +184,14 @@ const styles = StyleSheet.create({
   },
   section: {
     maxHeight: 220,
-  },
-  sectionHeader: {
-    backgroundColor: "rgba(0,0,0,0.2)",
-    padding: 8,
-  },
-  sectionItem: {
-    padding: 8,
-  },
-  itemText: {
-    color: Colors.white,
-    fontSize: 14,
-  },
-  sectionText: {
-    color: Colors.white,
-    fontSize: 14,
-    fontWeight: "bold",
+    borderBottomColor: Colors.zircon,
+    borderBottomWidth: 1,
   },
   marketText: {
     color: Colors.white,
     fontWeight: "bold",
     fontSize: 18,
+    marginTop: 8,
     marginBottom: 8,
     marginStart: 16,
   },

@@ -1,11 +1,16 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { View, FlatList, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
+import { BASE_API } from "../../server/api";
 import Http from "../../libs/http";
 import Colors from "../../res/colors";
-import { BASE_API } from "../../server/api";
-import CoinsItem from "./CoinsItem";
-import CoinsSearch from "./CoinsSearch";
+import CoinsItem from "../coins/CoinsItem";
+import CoinsSearch from "../coins/CoinsSearch";
 
 const CoinsScreen = ({ navigation }) => {
   const [coins, setCoins] = useState([]);
@@ -17,8 +22,6 @@ const CoinsScreen = ({ navigation }) => {
   }, []);
 
   const getCoins = async () => {
-    setLoading(true);
-
     const coins = await Http.instance.get(`${BASE_API}/tickers`);
     setCoins(coins.data);
     setAllCoins(coins.data);

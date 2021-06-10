@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, FlatList } from "react-native";
 import Storage from "../../libs/storage";
 import Colors from "../../res/colors";
 import CoinsItem from "../coins/CoinsItem";
-import FavoritesEmptyState from "./FavoritesEmptyState";
+import FavoritesEmptyState from "../favorites/FavoritesEmptyState";
 
 const FavoritesScreen = ({ navigation }) => {
   const [favorites, setFavorites] = useState([]);
@@ -19,9 +19,7 @@ const FavoritesScreen = ({ navigation }) => {
     try {
       const allKeys = await Storage.instance.getAllKeys();
       const keys = allKeys.filter((key) => key.includes("favorite-"));
-
       const favs = await Storage.instance.multiGet(keys);
-
       const favorites = favs.map((fav) => JSON.parse(fav[1]));
       setFavorites(favorites);
     } catch (error) {

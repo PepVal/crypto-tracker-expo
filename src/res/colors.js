@@ -5,6 +5,7 @@ const Colors = {
   picton: "#3c6fc8",
   carmine: "#ef6372",
   white: "#fff",
+  gray: "#c3c3c3",
 };
 
 export default Colors;
