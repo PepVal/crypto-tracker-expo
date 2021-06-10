@@ -5,26 +5,43 @@ import Http from "../../libs/http";
 import Colors from "../../res/colors";
 import { BASE_API } from "../../server/api";
 import CoinsItem from "./CoinsItem";
+import CoinsSearch from "./CoinsSearch";
 
 const CoinsScreen = ({ navigation }) => {
   const [coins, setCoins] = useState([]);
+  const [allCoins, setAllCoins] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    (async () => {
-      const coins = await Http.instance.get(`${BASE_API}/tickers`);
-      setLoading(false);
-      setCoins(coins.data);
-    })();
+    getCoins();
   }, []);
 
+  const getCoins = async () => {
+    setLoading(true);
+
+    const coins = await Http.instance.get(`${BASE_API}/tickers`);
+    setCoins(coins.data);
+    setAllCoins(coins.data);
+    setLoading(false);
+  };
+
   const handlePress = (coin) => {
-    navigation.navigate("CoinDetail",{coin});
+    navigation.navigate("CoinDetail", { coin });
+  };
+
+  const handleSearch = (query) => {
+    const coinsFilter = allCoins.filter((coin) => {
+      return (
+        coin.name.toLowerCase().includes(query.toLowerCase()) ||
+        coin.symbol.toLowerCase().includes(query.toLowerCase())
+      );
+    });
+    setCoins(coinsFilter);
   };
 
   return (
     <View style={styles.container}>
+      <CoinsSearch onChange={handleSearch} />
       {loading ? <ActivityIndicator color="#fff" size="large" /> : null}
       <FlatList
         data={coins}
