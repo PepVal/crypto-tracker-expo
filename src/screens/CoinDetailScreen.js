@@ -10,13 +10,13 @@ import {
   Pressable,
   Alert,
 } from "react-native";
-import Http from "../../libs/http";
-import Storage from "../../libs/storage";
-import Colors from "../../res/colors";
-import { BASE_API } from "../../server/api";
-import CoinMarketItem from "../coinDetail/CoinMarketItem";
-import SectionHeader from "../coinDetail/SectionHeader";
-import SectionItem from "../coinDetail/SectionItem";
+import Http from "../libs/http";
+import Storage from "../libs/storage";
+import Colors from "../res/colors";
+import { BASE_API } from "../server/api";
+import CoinMarketItem from "../components/coinDetail/CoinMarketItem";
+import SectionHeader from "../components/coinDetail/SectionHeader";
+import SectionItem from "../components/coinDetail/SectionItem";
 
 const CoinDetailScreen = ({ navigation, route }) => {
   const [coin, setCoin] = useState({});

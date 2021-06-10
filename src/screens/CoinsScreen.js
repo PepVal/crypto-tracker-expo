@@ -6,11 +6,11 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import { BASE_API } from "../../server/api";
-import Http from "../../libs/http";
-import Colors from "../../res/colors";
-import CoinsItem from "../coins/CoinsItem";
-import CoinsSearch from "../coins/CoinsSearch";
+import { BASE_API } from "../server/api";
+import Http from "../libs/http";
+import Colors from "../res/colors";
+import CoinsItem from "../components/coins/CoinsItem";
+import CoinsSearch from "../components/coins/CoinsSearch";
 
 const CoinsScreen = ({ navigation }) => {
   const [coins, setCoins] = useState([]);

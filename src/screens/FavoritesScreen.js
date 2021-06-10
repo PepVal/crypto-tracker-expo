@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Text, View, StyleSheet, FlatList } from "react-native";
-import Storage from "../../libs/storage";
-import Colors from "../../res/colors";
-import CoinsItem from "../coins/CoinsItem";
-import FavoritesEmptyState from "../favorites/FavoritesEmptyState";
+import Storage from "../libs/storage";
+import Colors from "../res/colors";
+import CoinsItem from "../components/coins/CoinsItem";
+import FavoritesEmptyState from "../components/favorites/FavoritesEmptyState";
 
 const FavoritesScreen = ({ navigation }) => {
   const [favorites, setFavorites] = useState([]);

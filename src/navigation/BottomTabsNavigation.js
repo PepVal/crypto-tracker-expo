@@ -1,9 +1,9 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import CoinsStack from "../coins/CoinsStack";
-import FavoritesStack from "../favorites/FavoritesStack";
-import Colors from "../../res/colors";
 import { Image } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import CoinsStack from "../components/coins/CoinsStack";
+import FavoritesStack from "../components/favorites/FavoritesStack";
+import Colors from "../res/colors";
 
 const Tabs = createBottomTabNavigator();
 
@@ -33,7 +33,7 @@ const BottomTabsNavigation = () => {
             return (
               <Image
                 style={{ tintColor: color, width: size, height: size }}
-                source={require("../../../assets/bank.png")}
+                source={require("../../assets/bank.png")}
               />
             );
           },
@@ -47,7 +47,7 @@ const BottomTabsNavigation = () => {
             return (
               <Image
                 style={{ tintColor: color, width: size, height: size }}
-                source={require("../../../assets/star.png")}
+                source={require("../../assets/star.png")}
               />
             );
           },

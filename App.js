@@ -1,10 +1,10 @@
 import "react-native-gesture-handler";
 import React from "react";
-import { Image, SafeAreaView } from "react-native";
+import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import BottomTabsNavigation from "./src/components/navigation/BottomTabsNavigation";
+import BottomTabsNavigation from "./src/navigation/BottomTabsNavigation";
 
 const Tabs = createBottomTabNavigator();
 
